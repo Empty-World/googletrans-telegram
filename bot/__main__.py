@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # tr
     dispatcher.add_handler(
         CommandHandler("tr", tr_command,
-                       Filters.text & Filters.reply & Filters.group)
+                       Filters.text & Filters.reply)
     )
     dispatcher.add_handler(
         MessageHandler(Filters.text & ~Filters.command & Filters.reply,
