@@ -26,3 +26,8 @@ def tr_command(update: Update, _) -> None:
         update.message.reply_text(result)
     else:
         update.message.reply_text('Language not supported')
+
+
+def help_msg(update: Update, _) -> None:
+    lang_codes_list = "\n".join(LANGUAGES)
+    update.message.reply_text(f'`{lang_codes_list}`', ParseMode.MARKDOWN)
