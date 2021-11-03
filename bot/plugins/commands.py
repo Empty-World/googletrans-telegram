@@ -1,14 +1,18 @@
 from telegram import Update, ForceReply
+from telegram.parsemode import ParseMode
 from ..utils import google_tr
 from googletrans import LANGUAGES
+from bot import START_MESSAGE
 
 
 def start_msg(update: Update, _) -> None:
-    """Send a message when the command /start is issued."""
+    """
+    Send a message when the command /start is issued.
+    """
     user = update.effective_user
-    update.message.reply_markdown_v2(
-        fr'Hi {user.mention_markdown_v2()}!\n',
-        reply_markup=ForceReply(selective=True),
+    update.message.reply_text(
+        f'*Hello* {user.mention_markdown()}, {START_MESSAGE}',
+        ParseMode.MARKDOWN
     )
 
 
