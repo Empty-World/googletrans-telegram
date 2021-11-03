@@ -1,5 +1,5 @@
 from bot import logger, BOT_TOKEN, __version__
-from .plugins import income_text_handler, tr_command
+from .plugins import income_text_handler, tr_command, help_msg
 from .plugins import start_msg
 from telegram.ext import (
     Updater,
@@ -14,6 +14,7 @@ if __name__ == '__main__':
     updater = Updater(BOT_TOKEN)
     dispatcher = updater.dispatcher
     dispatcher.add_handler(CommandHandler("start", start_msg))
+    dispatcher.add_handler(CommandHandler("help", help_msg))
     # tr
     dispatcher.add_handler(
         CommandHandler("tr", tr_command,
