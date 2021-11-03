@@ -13,15 +13,17 @@ if __name__ == '__main__':
     LOGGER = logger(__name__)
     updater = Updater(BOT_TOKEN)
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start_msg, Filters.private))
-    dispatcher.add_handler(CommandHandler("help", help_msg, Filters.private))
+    dispatcher.add_handler(CommandHandler(
+        "start", start_msg, Filters.chat_type.private))
+    dispatcher.add_handler(CommandHandler(
+        "help", help_msg, Filters.chat_type.private))
     # tr
     dispatcher.add_handler(
         CommandHandler("tr", tr_command,
-                       Filters.text & Filters.reply)
+                       Filters.text)
     )
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.command & Filters.reply & Filters.private,
+        MessageHandler(Filters.text & ~Filters.command & Filters.reply & Filters.chat_type.private,
                        income_text_handler)
     )
     updater.start_polling()
