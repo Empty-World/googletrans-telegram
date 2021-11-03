@@ -13,15 +13,15 @@ if __name__ == '__main__':
     LOGGER = logger(__name__)
     updater = Updater(BOT_TOKEN)
     dispatcher = updater.dispatcher
-    dispatcher.add_handler(CommandHandler("start", start_msg))
-    dispatcher.add_handler(CommandHandler("help", help_msg))
+    dispatcher.add_handler(CommandHandler("start", start_msg, Filters.private))
+    dispatcher.add_handler(CommandHandler("help", help_msg, Filters.private))
     # tr
     dispatcher.add_handler(
         CommandHandler("tr", tr_command,
                        Filters.text & Filters.reply)
     )
     dispatcher.add_handler(
-        MessageHandler(Filters.text & ~Filters.command & Filters.reply,
+        MessageHandler(Filters.text & ~Filters.command & Filters.reply & Filters.private,
                        income_text_handler)
     )
     updater.start_polling()
